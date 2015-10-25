@@ -40,11 +40,13 @@ function appendPerson() {
                     "<a href='" + carouselArray[j].github +"'>Visit my Github!</a>" +
                     "<blockquote>" + carouselArray[j].shoutout +"</blockquote>" +
                  "</div>";
-               $('#target').fadeOut(function(){
+                //Fade in and out
+                $('#target').fadeOut(function(){
                     $('#target').html(el).fadeIn();
                 })
             }
         }
+    //Start Interval
     intervalID = setInterval(nextSlide, 10000);
 
 }
@@ -60,16 +62,18 @@ function createNavButtons($el) {
 }
 //Carousel Functionality
 function nextSlide(){
+    //Stop Interval
     clearInterval(intervalID);
-    console.log('clicked');
     indexTracker++;
    if(indexTracker >= carouselArray.length){
         indexTracker = 0;
     }
    updateIndexPoints();
+    //Interval Started inside appendPerson
    appendPerson();
 }
 function prevSlide(){
+    //Stop Inteval
     clearInterval(intervalID);
     indexTracker--;
     if(indexTracker < 0){
@@ -77,9 +81,10 @@ function prevSlide(){
     }
 
     updateIndexPoints();
+    //Interval Started inside appendPerson
     appendPerson();
 }
-
+//adds class to active slide, remove from others
 function updateIndexPoints(){
     for(var i = 0; i < carouselArray.length; i++){
         $("#index" + i).removeClass("index-point-active");
